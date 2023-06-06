@@ -81,7 +81,7 @@ class CausalLMModel(BaseModel):
         predictions = self.tokenizer.batch_decode(generated_ids, truncate_before_pattern=[r"\n\n^#", "^'''", "\n\n\n"])
         return predictions
 
-    def predict(self, sources):
+    def predict(self, sources, max_length=None):
         input_for_net = [' '.join(source.strip().split()).replace('\n', ' ') for source in sources]
-        output = self.forward(input_for_net)
+        output = self.forward(input_for_net, max_length=max_length)
         return output
