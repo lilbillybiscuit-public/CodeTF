@@ -93,7 +93,7 @@ pip install salesforce-codetf==1.0.1.1
 3. Alternatively, build CodeTF from source:
 
 ```bash
-git clone https://github.com/salesforce/CodeTF.git
+git clone https://github.com/lilbillybiscuit-public/CodeTF.git
 cd CodeTF
 pip install -e .
 ```

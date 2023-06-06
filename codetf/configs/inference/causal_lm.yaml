@@ -26,6 +26,10 @@ causallm-codegen-6B-mono-pretrained:
     huggingface_url: "Salesforce/codegen-6B-mono"
     tokenizer_url: "Salesforce/codegen-6B-mono"
     max_prediction_length: 512
+causallm-codegen-16B-mono-pretrained:
+    huggingface_url: "Salesforce/codegen-16B-mono"
+    tokenizer_url: "Salesforce/codegen-16B-mono"
+    max_prediction_length: 512
 causallm-codegen-6B-nl-pretrained:
     huggingface_url: "Salesforce/codegen-6B-nl"
     tokenizer_url: "Salesforce/codegen-6B-nl"

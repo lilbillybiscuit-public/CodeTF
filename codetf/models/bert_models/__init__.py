@@ -11,6 +11,7 @@ import torch
 from accelerate import init_empty_weights, load_checkpoint_and_dispatch
 from huggingface_hub import hf_hub_download
 import torch
+import os
 
 @registry.register_model("bert")
 class BertModel(BaseModel):
@@ -22,7 +23,8 @@ class BertModel(BaseModel):
         super().__init__()
         self.model = model
         self.tokenizer = tokenizer
-        self.max_prediction_length = model_config["max_prediction_length"]
+        self.max_prediction_length = (int(os.environ["MAX_PREDICTION_LENGTH"]) if "MAX_PREDICTION_LENGTH" 
+                                      in os.environ else model_config["max_prediction_length"])
 
     @classmethod
     def init_tokenizer(cls, model):

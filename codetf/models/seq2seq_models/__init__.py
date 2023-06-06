@@ -6,6 +6,7 @@ from codetf.models.base_model import BaseModel
 from transformers import AutoModelForSeq2SeqLM, AutoConfig
 from codetf.common.registry import registry
 from accelerate import Accelerator
+import os
 
 @registry.register_model("codet5")
 class Seq2SeqModel(BaseModel):
@@ -17,7 +18,8 @@ class Seq2SeqModel(BaseModel):
         self.model = model
         self.tokenizer = tokenizer
         self.max_source_length = model_config["max_source_length"]
-        self.max_prediction_length = model_config["max_prediction_length"]
+        self.max_prediction_length = (int(os.environ["MAX_PREDICTION_LENGTH"]) if "MAX_PREDICTION_LENGTH" 
+                                      in os.environ else model_config["max_prediction_length"])
         self.beam_size = model_config["beam_size"]
 
     @classmethod
