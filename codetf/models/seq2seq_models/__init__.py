@@ -20,7 +20,8 @@ class Seq2SeqModel(BaseModel):
         self.max_source_length = model_config["max_source_length"]
         self.max_prediction_length = (int(os.environ["MAX_PREDICTION_LENGTH"]) if "MAX_PREDICTION_LENGTH" 
                                       in os.environ else model_config["max_prediction_length"])
-        self.beam_size = model_config["beam_size"]
+        self.beam_size = (int(os.environ["BEAM_SIZE"]) if "BEAM_SIZE" 
+                          in os.environ else model_config["beam_size"])
 
     @classmethod
     def init_tokenizer(cls, model):
