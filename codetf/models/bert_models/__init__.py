@@ -60,8 +60,6 @@ class BertModel(BaseModel):
             else:
                 model = RobertaModel.from_pretrained(checkpoint, 
                                             device_map="auto")
-
-        model.tie_weights()
         tokenizer = model_class.init_tokenizer(model_config["tokenizer_url"])
         
         return model_class(
