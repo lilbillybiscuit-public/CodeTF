@@ -69,12 +69,14 @@ class Seq2SeqModel(BaseModel):
         )
     
 
-    def forward(self, sources):
+    def forward(self, sources, max_length=None):
         encoding = self.tokenizer(sources, return_tensors='pt')
         input_ids = encoding.input_ids.to(self.device)
         attention_mask = encoding.attention_mask.to(self.device)
+        if max_length is None:
+            max_length = self.max_prediction_length
         generated_ids = self.model.generate(input_ids, attention_mask=attention_mask,
-                                            max_length=self.max_prediction_length, 
+                                            max_length=max_length, 
                                             num_beams=self.beam_size)
 
         predictions = self.tokenizer.batch_decode(generated_ids, skip_special_tokens=True)

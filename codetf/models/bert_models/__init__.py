@@ -70,7 +70,7 @@ class BertModel(BaseModel):
             tokenizer=tokenizer
         )
    
-    def forward(self, sources):
+    def forward(self, sources, max_length=None):
         encoding = self.tokenizer(sources, return_tensors='pt')
         input_ids = encoding.input_ids.to(self.device)
         generated_ids = self.model(input_ids)
